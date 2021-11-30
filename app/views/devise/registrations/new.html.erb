@@ -1,0 +1,94 @@
+<div class="card" style="width: 45rem;">
+  <div class="card-header">
+    <h4>Sign up</h4>
+  </div>
+  <%= javascript_pack_tag "auto-complete", "data-turbolinks-track" => true %>
+  <div class="card-body">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+
+      <div class="field form-group">
+        <%= f.label :name %><br />
+        <%= f.text_field :name,class:"form-control", autofocus: true, autocomplete: "name" %>
+      </div>
+
+      <div class="field form-group">
+        <%= f.label :username %><br />
+        <%= f.text_field :username,class:"form-control", autofocus: true, autocomplete: "username" %>
+      </div>
+
+      <div class="field form-group">
+        <%= f.label :phone_no %><br />
+        <%= f.text_field :phone_no,class:"form-control", autofocus: true, autocomplete: "phone_no" %>
+      </div>
+      <div class="field form-group">
+        <%= f.fields_for :address do |contact_detail_form| %>
+          <%= contact_detail_form.label "Location" %>
+          <%= contact_detail_form.text_field :location,class:"form-control",id:"autocomplete", onFocus:"geolocate()", placeholder: "Enter Address to fill the form" %>
+          </br>
+          <%= contact_detail_form.label "Street Address" %>
+          <%= contact_detail_form.text_field :street_address,class:"form-control",id:"street_number" %>
+          </br>
+          <%= contact_detail_form.label "City" %>
+          <%= contact_detail_form.text_field :city,class:"form-control", id:"locality" %>
+          </br>
+          <%= contact_detail_form.label "State" %>
+          <%= contact_detail_form.text_field :state,class:"form-control", id:"administrative_area_level_1" %>
+          </br>
+          <%= contact_detail_form.label "Zip Code" %>
+          <%= contact_detail_form.text_field :zip,class:"form-control", id:"postal_code" %>
+          </br>
+          <%= contact_detail_form.label "Country" %>
+          <%= contact_detail_form.text_field :country,class:"form-control", id:"country" %>
+          </br>
+          <%= contact_detail_form.label "Latitude" %>
+          <%= contact_detail_form.text_field :latitude,class:"form-control",id:"loc_lat" %>
+          </br>
+          <%= contact_detail_form.label "Longitude" %>
+          <%= contact_detail_form.text_field :longitude,class:"form-control", id:"loc_long" %>
+        <%end %>
+      </div></br>
+
+      <div class="field form-group">
+        <%= f.label :role %><br/>
+        <%= f.select :role,User: "User", Admin: "Admin"  %>
+      </div>
+      </br>
+
+      <div class="field form-group">
+        <%= f.label :email %><br />
+        <%= f.email_field :email,class:"form-control", autofocus: true, autocomplete: "email" %>
+      </div>
+
+      <div class="field form-group">
+        <%= f.label :password %>
+        <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <%= f.password_field :password,class:"form-control", autocomplete: "new-password" %>
+      </div>
+
+      <div class="field form-group">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation,class:"form-control", autocomplete: "new-password" %>
+      </div>
+      </br>
+
+      <div class="actions">
+        <%= f.submit "Sign up",class:'btn btn-primary' %>
+      </div>
+    <% end %>
+    </br>
+
+    <%= render "devise/shared/links" %>
+  </div>
+</div>
+
+
+
+
+
+
+
+

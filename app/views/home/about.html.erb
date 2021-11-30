@@ -1,0 +1,18 @@
+<h1> Charts </h1>
+<%= javascript_pack_tag "home", "data-turbolinks-track" => true %>
+<h3> Charts for User's Role </h3>
+<%= pie_chart User.all.group(:role).count,download: true,library: {animation: {easing: 'easeOutQuad'}}%>
+<h3> Charts for Event Created Date </h3>
+</br>
+<%= button_tag 'Weekly', type: 'button' ,class:"btn btn-success week",data: {
+  remote: true,
+} %>
+<%= button_tag 'Monthly', type: 'button' ,class:"btn btn-success week",data: {
+  remote: true,
+} %>
+<%= button_tag 'Yearly', type: 'button' ,class:"btn btn-success week",data: {
+  remote: true,
+} %>
+</br>
+</br>
+<%= line_chart Event.group_by_day(:start_date).count,xtitle: "Date", ytitle: "Event Count",library: {animation: {easing: 'easeOutQuad'}},colors: ["#b00"]%>
